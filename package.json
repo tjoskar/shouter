@@ -1,0 +1,19 @@
+{
+  "name": "shouter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp test:ci"
+  },
+  "keywords": [
+    "event"
+  ],
+  "author": "Oskar Karlsson <kontakta@oskarkarlsson.nu>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel": "^5.6.14",
+    "eslint": "^0.24.1",
+    "mocha": "^2.2.5"
+  }
+}
