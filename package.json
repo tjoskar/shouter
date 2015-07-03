@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "gulp test:ci"
+    "test": "node_modules/mocha/bin/mocha --compilers js:babel/register test"
   },
   "keywords": [
     "event"
