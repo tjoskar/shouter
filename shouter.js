@@ -26,12 +26,12 @@ var shouter = function shouter(channel, route, getOldMessage) {
         var orginalFunction = descriptor.value;
         let fun = orginalFunction.bind(target);
 
-        descriptor.value = function() {
+        descriptor.value = function(...args) {
             if (this !== target) {
                 fun = orginalFunction.bind(this);
                 target = this;
             }
-            fun(...arguments);
+            fun(...args);
             shouter.on(channel, route, orginalFunction, target, getOldMessage);
         };
     };
