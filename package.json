@@ -20,6 +20,7 @@
     "gulp-babel": "^5.1.0",
     "gulp-sourcemaps": "^1.5.2",
     "gulp-uglify": "^1.2.0",
-    "mocha": "^2.2.5"
+    "mocha": "^2.2.5",
+    "promise-polyfill": "^2.1.0"
   }
 }

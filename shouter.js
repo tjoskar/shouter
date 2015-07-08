@@ -10,6 +10,9 @@
 //        shouter.off('avalanche', fun);
 //
 
+// For some reason some people are still using old browsers and systems
+import 'promise-polyfill';
+
 /**
  * Decorator
  * @param  {string} channel
@@ -116,6 +119,7 @@ shouter.off = function(channel, route, callback) {
 shouter.trigger = function(channel, route) {
     var args = Array.prototype.slice.call(arguments);
     args.splice(0, 2);
+    let results = [];
 
     if (channel in eventList) {
         var events = eventList[channel];
@@ -123,7 +127,9 @@ shouter.trigger = function(channel, route) {
             .forEach(function (routName) {
                 if (route === routName || route === '*' || routName === '*') {
                     events[routName].forEach(function(event) {
-                        event.callback.apply(event.context, args);
+                        results.push(
+                            Promise.resolve(event.callback.apply(event.context, args))
+                        );
                     });
                 }
             });
@@ -138,7 +144,8 @@ shouter.trigger = function(channel, route) {
                 route: route,
                 args: args
             });
-        }
+        },
+        results: results
     };
 };
 
