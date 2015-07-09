@@ -128,7 +128,7 @@ shouter.trigger = function(channel, route) {
                 if (route === routName || route === '*' || routName === '*') {
                     events[routName].forEach(function(event) {
                         results.push(
-                            Promise.resolve(event.callback.apply(event.context, args))
+                            new Promise((resolve) => setTimeout(() => resolve(event.callback.apply(event.context, args))))
                         );
                     });
                 }
@@ -145,7 +145,7 @@ shouter.trigger = function(channel, route) {
                 args: args
             });
         },
-        results: results
+        results: Promise.all(results)
     };
 };
 

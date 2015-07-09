@@ -15,7 +15,7 @@ describe('shouter: ', () => {
             assert.doesNotThrow(shouter.bind(undefined, 'channel', 'event'));
         });
 
-        it('should trigger an event', () => {
+        it('should trigger an event', (done) => {
             let context = {called: 0};
             let target = context;
             let name = '';
@@ -27,9 +27,13 @@ describe('shouter: ', () => {
 
             shouter('channel', 'event')(target, name, descriptor);
             descriptor.value();
-            shouter.trigger('channel', 'event');
-
-            assert.strictEqual(context.called, 2);
+            shouter
+                .trigger('channel', 'event')
+                .results
+                .then(() => {
+                    assert.strictEqual(context.called, 2);
+                    done();
+                });
         });
 
     });
