@@ -13,32 +13,7 @@
 // For some reason some people are still using old browsers and systems
 import 'promise-polyfill';
 
-/**
- * Decorator
- * @param  {string} channel
- * @param  {string} route
- * @param  {boolian} getOldMessage
- * @return {function}
- */
-var shouter = function shouter(channel, route, getOldMessage) {
-    if (!channel || !route) {
-        throw new Error('You must specify both channel and route');
-    }
-
-    return function(target, name, descriptor) {
-        var orginalFunction = descriptor.value;
-        let fun = orginalFunction.bind(target);
-
-        descriptor.value = function(...args) {
-            if (this !== target) {
-                fun = orginalFunction.bind(this);
-                target = this;
-            }
-            fun(...args);
-            shouter.on(channel, route, orginalFunction, target, getOldMessage);
-        };
-    };
-};
+var shouter = {};
 
 /**
  * List of registered events
