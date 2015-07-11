@@ -1,24 +1,32 @@
 'use strict';
 
 import {shouter} from '../shouter';
+import {triggerOnEvent, shoutOnSet, shoutOnGet} from '../decorators';
 
-class MyClass {
+class Person {
 
-    phrase;
-
-    constructor(phrase) {
-        this.phrase = phrase;
+    @shoutOnSet('name', 'changing')
+    set name(name) {
+        return (this._name = name);
     }
 
-    @shouter('speek', 'greetings')
+    @shoutOnGet('name', 'asking')
+    get name() {
+        return this._name;
+    }
+
+    @triggerOnEvent('speek', 'greetings')
     sayHi(name) {
-        console.log(`${this.phrase} ${name}`);
+        console.log(`Hello ${name}`);
     }
 
 }
 
-let myClass = new MyClass('Hello');
+shouter.on('name', 'changing', (newName) => console.log(`My new name is ${newName}`));
+shouter.on('name', 'asking', (name) => console.log(`Someone is asking for my name and I told them: ${name}`));
 
-myClass.sayHi('Tyrion Lannister');
+let oskar = new Person();
+oskar.name = 'Oskar';
+console.log(oskar.name);
 
 shouter.trigger('speek', 'greetings', 'Jon Snow');
