@@ -152,7 +152,7 @@ describe('shouter: ', () => {
 
 		});
 
-		it('should trigger all listeners on channel when * as event name', function() {
+		it('should trigger all listeners on channel when * as event name', function(done) {
 			var context = {'called': 0, 'result': 1};
 			shouter.on('channelName', 'eventName', function(n) {
 				this.called++;
