@@ -6,8 +6,8 @@
 //
 //        var help = function() { alert('HELP!'); };
 //        shouter.on('avalanche', '*', help);
-//        shouter.trigger('avalanche', '*');
-//        shouter.off('avalanche', fun);
+//        shouter.trigger('avalanche', 'danger');
+//        shouter.off('avalanche', help);
 //
 
 // For some reason some people are still using old browsers and systems
