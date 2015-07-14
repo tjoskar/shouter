@@ -103,12 +103,24 @@ shouter.trigger = function(channel, route) {
                 if (route === routName || route === '*' || routName === '*') {
                     events[routName].forEach(function(event) {
                         results.push(
-                            new Promise((resolve) => setTimeout(() => resolve(event.callback.apply(event.context, args))))
+                            new Promise((resolve, reject) => {
+                                setTimeout(() => {
+                                    let result;
+                                    try {
+                                        result = event.callback.apply(event.context, args);
+                                        resolve(result);
+                                    } catch (e) {
+                                        reject(e);
+                                    }
+                                });
+                            })
                         );
                     });
                 }
             });
     }
+
+    var promiseResult = Promise.all(results);
 
     return {
         save: function() {
@@ -119,8 +131,10 @@ shouter.trigger = function(channel, route) {
                 route: route,
                 args: args
             });
+
+            return {results: promiseResult};
         },
-        results: Promise.all(results)
+        results: promiseResult
     };
 };
 
