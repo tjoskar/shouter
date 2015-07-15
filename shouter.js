@@ -29,6 +29,27 @@ let eventList = {};
 let oldMessage = {};
 
 /**
+ * Helper function to make async calls
+ * @param {Object}  event
+ * @param {Array}   args
+ * @return {Promise}
+*/
+let caller = (event, args) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            let result;
+            try {
+                result = event.callback.apply(event.context, args);
+                resolve(result);
+            } catch (e) {
+                reject(e);
+            }
+        });
+    });
+};
+
+
+/**
  * Binds a 'callback' to an event.
  * @param  {String}   channel       Name of the channel
  * @param  {String}   route         Name of the route, optional
@@ -102,19 +123,7 @@ shouter.trigger = function(channel, route) {
             .forEach(function (routName) {
                 if (route === routName || route === '*' || routName === '*') {
                     events[routName].forEach(function(event) {
-                        results.push(
-                            new Promise((resolve, reject) => {
-                                setTimeout(() => {
-                                    let result;
-                                    try {
-                                        result = event.callback.apply(event.context, args);
-                                        resolve(result);
-                                    } catch (e) {
-                                        reject(e);
-                                    }
-                                });
-                            })
-                        );
+                        results.push(caller(event, args));
                     });
                 }
             });
