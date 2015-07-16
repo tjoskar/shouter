@@ -34,12 +34,12 @@ let oldMessage = {};
  * @param {Array}   args
  * @return {Promise}
 */
-let caller = (event, args) => {
+let caller = function (event, args) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             let result;
             try {
-                result = event.callback.apply(event.context, args);
+                result = event.context::event.callback(...args);
                 resolve(result);
             } catch (e) {
                 reject(e);
@@ -74,9 +74,9 @@ shouter.on = function(channel, route, callback, context, getOldMessage) {
     });
 
     if (getOldMessage && channel in oldMessage) {
-        oldMessage[channel].forEach(function(val) {
+        oldMessage[channel].forEach((val) => {
             if (route === val.route || route === '*') {
-                callback.apply(context, val.args);
+                context::callback(...val.args);
             }
         });
     }
@@ -112,19 +112,15 @@ shouter.off = function(channel, route, callback) {
  * @param  {*args}  arguments   Will be passed throw to the callback function
  * @return {object}
  */
-shouter.trigger = function(channel, route) {
-    var args = Array.prototype.slice.call(arguments);
-    args.splice(0, 2);
+shouter.trigger = function(channel, route, ...args) {
     let results = [];
 
     if (channel in eventList) {
         var events = eventList[channel];
         Object.keys(events)
-            .forEach(function (routName) {
+            .forEach(routName => {
                 if (route === routName || route === '*' || routName === '*') {
-                    events[routName].forEach(function(event) {
-                        results.push(caller(event, args));
-                    });
+                    events[routName].forEach(event => results.push(caller(event, args)));
                 }
             });
     }
