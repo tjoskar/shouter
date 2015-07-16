@@ -153,5 +153,10 @@ shouter._deleteAllEvents = function() {
     oldMessage = {};
 };
 
-export default shouter;
-export {shouter};
+if (typeof window === 'undefined' && typeof module === 'object' && typeof module.exports === 'object') {
+    exports.__esModule = true;
+    exports.shouter = shouter;
+    exports.default = shouter;
+} else {
+    window.shouter = shouter;
+}
