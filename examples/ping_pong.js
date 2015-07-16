@@ -1,6 +1,6 @@
 'use strict';
 
-import {shouter} from '../shouter';
+import {shouter} from '../src/index';
 
 class Player {
 

@@ -1,8 +1,7 @@
 'use strict';
 
 import {assert} from 'chai';
-import {shouter} from '../shouter';
-import {triggerOnEvent, shoutOnSet, shoutOnGet} from '../decorators';
+import {shouter, triggerOnEvent, shoutOnSet, shoutOnGet} from '../src/index';
 
 describe('decorators: ', () => {
 

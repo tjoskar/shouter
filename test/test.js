@@ -1,7 +1,7 @@
 'use strict';
 
 import {assert} from 'chai';
-import shouter from '../shouter';
+import {shouter} from '../src/index';
 
 describe('shouter: ', () => {
 

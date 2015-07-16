@@ -1,6 +1,6 @@
 'use strict';
 
-import {shouter} from '../shouter';
+import {shouter} from '../src/index';
 
 let extractRar = file => {
     if (file.type !== 'rar') {
@@ -38,4 +38,4 @@ shouter.trigger('extract', '*', file)
             .filter(f => f)
             .forEach(f => console.log('Yaa!', f.path));
     })
-    .catch(error => console.log(error));
+    .catch(error => console.error(error));

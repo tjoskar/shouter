@@ -1,7 +1,6 @@
 'use strict';
 
-import {shouter} from '../shouter';
-import {triggerOnEvent, shoutOnSet, shoutOnGet} from '../decorators';
+import {shouter, triggerOnEvent, shoutOnSet, shoutOnGet} from '../src/index';
 
 class Person {
 
