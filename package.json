@@ -11,6 +11,9 @@
   ],
   "author": "Oskar Karlsson <kontakta@oskarkarlsson.nu>",
   "license": "MIT",
+  "dependencies": {
+    "promise-polyfill": "^2.1.0"
+  },
   "devDependencies": {
     "babel": "^5.6.14",
     "babel-eslint": "^3.1.23",
@@ -23,7 +26,6 @@
     "gulp-sourcemaps": "^1.5.2",
     "gulp-uglify": "^1.2.0",
     "mocha": "^2.2.5",
-    "promise-polyfill": "^2.1.0"
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   }
