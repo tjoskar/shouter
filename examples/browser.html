@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Test</title>
+    </head>
+    <body>
+        <p>Press cmd + alt + i</p>
+        <script src="../dist/browser/shouter.js"></script>
+        <script type="text/javascript">
+            shouter
+                .on('questions', 'life', function(q) {
+                    if (q === 'meaning') {
+                        return 42;
+                    } else {
+                        return 44;
+                    }
+                });
+
+            shouter
+                .trigger('questions', 'life', 'meaning')
+                .results
+                .then(function(questions) {
+                    questions.forEach(function(answer) {
+                        console.log(answer); // 42
+                    })
+                });
+        </script>
+    </body>
+</html>
