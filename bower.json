@@ -1,0 +1,21 @@
+{
+  "name": "shouter",
+  "main": "dist/browser/shouter.js",
+  "version": "1.0.0",
+  "authors": [
+    "Oskar Karlsson <kontakta@oskarkarlsson.nu>"
+  ],
+  "moduleType": [
+    "es6",
+    "globals",
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
