@@ -13,6 +13,46 @@ shouter.trigger('avalanche', 'danger');
 shouter.off('avalanche', help);
 ```
 
+### Install
+
+#### NPM:
+```
+$ npm install shouter
+```
+
+And then (ES5):
+```javascript
+var shouter = require('shouter').shouter;
+
+shouter
+    .on('questions', 'life', function(q) {
+        if (q === 'meaning') {
+            return 42;
+        } else {
+            return 44;
+        }
+    });
+
+shouter
+    .trigger('questions', 'life', 'meaning')
+    .results
+    .then(function(questions) {
+        questions.forEach(function(answer) {
+            console.log(answer); // 42
+        })
+    });
+```
+
+See `example` folder for ES6 and ES7 example.
+
+#### Bower
+(or download (this file)[https://github.com/tjoskar/shouter/blob/master/dist/browser/shouter.js]):
+```
+$ bower install shouter
+```
+
+And then, include `dist/browser/shouter.js` in your html file, see: (browser.html)[https://github.com/tjoskar/shouter/blob/master/examples/browser.html] for example.
+
 ### Listening to channels and routes
 ---
 When subscribing to an event you must specify a channel, route and a callback:
@@ -178,7 +218,11 @@ shouter.trigger('speak', 'greetings', 'Jon Snow');
 ```
 
 See more examples in `test` or `exampels` folder.
+
 All code are written in ES6/7 (ES2016/ES2017).
+
 To run the `exampels`: `babel-node {file}`, eg: `babel-node examples/ping_pong.js`
+
 To build the source to ES5: `gulp`.
+
 To test: `npm test`
