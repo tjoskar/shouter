@@ -14,18 +14,18 @@ class Person {
         return this._name;
     }
 
-    @triggerOnEvent('speek', 'greetings')
+    @triggerOnEvent('speak', 'greetings')
     sayHi(name) {
         console.log(`Hello ${name}`);
     }
 
 }
 
-shouter.on('name', 'changing', (newName) => console.log(`My new name is ${newName}`));
+shouter.on('name', 'changing', (newName) => console.log(`My new name is: ${newName}`));
 shouter.on('name', 'asking', (name) => console.log(`Someone is asking for my name and I told them: ${name}`));
 
 let oskar = new Person();
 oskar.name = 'Oskar';
-console.log(oskar.name);
+console.log(`The person's name is: ${oskar.name}`);
 
-shouter.trigger('speek', 'greetings', 'Jon Snow');
+shouter.trigger('speak', 'greetings', 'Jon Snow');
