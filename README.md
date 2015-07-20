@@ -132,4 +132,8 @@ let getAlreadySubmittedEvents = true; // default: false
 shouter.on('channel', 'route', callback, context, getAlreadySubmittedEvents); // will trigger callback
 ```
 
-See more examples in `test` or `exampels` folder
+See more examples in `test` or `exampels` folder.
+All code are written in ES6/7 (ES2016/ES2017).
+To run the `exampels`: `babel-node {file}`, eg: `babel-node examples/ping_pong.js`
+To build the source to ES5: `gulp`.
+To test: `npm test`
