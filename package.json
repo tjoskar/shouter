@@ -1,13 +1,22 @@
 {
   "name": "shouter",
   "version": "1.0.0",
-  "description": "",
+  "description": "Simple, yet powerful micro framework for event broadcasts",
   "main": "index.js",
   "scripts": {
     "test": "node_modules/mocha/bin/mocha --compilers js:babel/register test"
   },
+  "bugs": {
+    "url" : "https://github.com/tjoskar/shouter/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url" : "https://github.com/tjoskar/shouter.git"
+  },
   "keywords": [
-    "event"
+    "event",
+    "event broadcasts",
+    "micro"
   ],
   "author": "Oskar Karlsson <kontakta@oskarkarlsson.nu>",
   "license": "MIT",
