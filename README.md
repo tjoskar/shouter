@@ -46,12 +46,12 @@ shouter
 See `example` folder for ES6 and ES7 example.
 
 #### Bower
-(or download (this file)[https://github.com/tjoskar/shouter/blob/master/dist/browser/shouter.js]):
+(or download [this file](dist/browser/shouter.js)):
 ```
 $ bower install shouter
 ```
 
-And then, include `dist/browser/shouter.js` in your html file, see: (browser.html)[https://github.com/tjoskar/shouter/blob/master/examples/browser.html] for example.
+And then, include `dist/browser/shouter.js` in your html file, see: [browser.html](examples/browser.html) for example.
 
 ### Listening to channels and routes
 ---
