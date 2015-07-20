@@ -1,5 +1,6 @@
 ## Shouter
-=====
+
+[![Build Status](https://travis-ci.org/tjoskar/shouter.svg)](https://travis-ci.org/tjoskar/shouter)
 
 Simple, yet powerful micro framework for event broadcasts.
 
