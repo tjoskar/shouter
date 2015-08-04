@@ -78,14 +78,14 @@ let context = {called: 0};
 let fun = function() {
     this.called++;
 }
-shouter.on('channel', 'route', callback, context);
+shouter.on('channel', 'route', fun, context);
 // Same as: shouter.on('channel', 'route', callback.bind(context));
 ```
 
 You can also pass a number of arguments:
 ```javascript
 let fun = (a, b, c) => a+b+c;
-shouter.on('channel', 'route', callback);
+shouter.on('channel', 'route', fun);
 shouter.trigger('channel', 'route', 1, 2, 3);
 ```
 
@@ -176,7 +176,7 @@ shouter.on('channel', 'route', callback, context, getAlreadySubmittedEvents); //
 ### Decorators
 ---
 If you are using ES2017 (aka ES7) (or typescript) you can decorate your classes:
-Yo can run this example by `babel-node examples/decorators.js`
+You can run this example by `babel-node examples/decorators.js` (remember to run `npm install` first)
 ```javascript
 import {shouter, triggerOnEvent, shoutOnSet, shoutOnGet} from 'shouter';
 
@@ -196,7 +196,7 @@ class Person {
     // See: https://github.com/wycats/javascript-decorators/issues/13#issuecomment-120875498 for more information
     @triggerOnEvent('speak', 'greetings')
     sayHi(name) {
-        console.log(`Hello ${name}`);
+        console.log(`Hello, ${name}`);
     }
 
 }
@@ -208,18 +208,30 @@ let oskar = new Person();
 oskar.name = 'Oskar';
 console.log(`The person's name is: ${oskar.name}`);
 
-shouter.trigger('speak', 'greetings', 'Jon Snow');
+shouter.trigger('speak', 'greetings', 'Dexter Morgan');
 
 // output:
 // The person's name is: Oskar
 // My new name is Oskar
 // Someone is asking for my name and I told them: Oskar
-// Hello Jon Snow
+// Hello, Dexter Morgan
 ```
 
+### Typescript
+There exist a type definition file in the `typings` folder.
+Just run `tsd link` to include it.
+```
+$ npm install shouter
+$ tsd link
+```
+
+
+### Contribute
 See more examples in `test` or `exampels` folder.
 
-All code are written in ES6/7 (ES2016/ES2017).
+All code are written in ES6/ES7 (ES2016/ES2017).
+
+To install: `npm install`
 
 To run the `exampels`: `babel-node {file}`, eg: `babel-node examples/ping_pong.js`
 
