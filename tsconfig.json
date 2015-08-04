@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "noImplicitAny": false,
+        "removeComments": true,
+        "preserveConstEnums": true
+    },
+    "filesGlob": [
+        "./typings/**/*.ts",
+        "!./node_modules/**/*.ts"
+    ],
+    "compileOnSave": false,
+    "files": [
+        "./typings/promise.d.ts",
+        "./typings/shouter.d.ts",
+        "./typings/test.ts"
+    ]
+}
