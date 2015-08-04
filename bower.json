@@ -2,7 +2,7 @@
   "name": "shouter",
   "main": "dist/browser/shouter.js",
   "description": "Simple, yet powerful micro framework for event broadcasts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "keywords": [
     "event",
     "event broadcasts",
