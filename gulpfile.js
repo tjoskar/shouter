@@ -19,7 +19,7 @@ gulp.task('build', function () {
 });
 
 gulp.task('browserify', function () {
-    return browserify('src/shouter.js', { debug: true })
+    return browserify('src/browser.js', { debug: true })
         .transform(babelify.configure({
             optional: [
                 'es7.decorators',
