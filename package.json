@@ -1,6 +1,6 @@
 {
   "name": "shouter",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Simple, yet powerful micro framework for event broadcasts",
   "main": "index.js",
   "scripts": {
