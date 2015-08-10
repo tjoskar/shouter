@@ -13,8 +13,6 @@
 // For some reason some people are still using old browsers and systems
 import 'promise-polyfill';
 
-var shouter = {};
-
 /**
  * List of registered events
  * @type {Object}
@@ -58,7 +56,7 @@ let caller = function (event, args) {
  * @param  {Boolian}  getOldMessage Determines if old triggers should be taken under account
  * @return {undefined}
  */
-shouter.on = function(channel, route, callback, context, getOldMessage) {
+let on = function(channel, route, callback, context, getOldMessage) {
 
     if (!(channel in eventList)) {
         eventList[channel] = {};
@@ -89,7 +87,7 @@ shouter.on = function(channel, route, callback, context, getOldMessage) {
  * @param  {Function} callback   Callback function for selecting a specific event
  * @return {undefined}
  */
-shouter.off = function(channel, route, callback) {
+let off = function(channel, route, callback) {
     if (arguments.length === 2) {
         callback = route;
         route = '*';
@@ -112,7 +110,7 @@ shouter.off = function(channel, route, callback) {
  * @param  {*args}  arguments   Will be passed throw to the callback function
  * @return {object}
  */
-shouter.trigger = function(channel, route, ...args) {
+let trigger = function(channel, route, ...args) {
     let results = [];
 
     if (channel in eventList) {
@@ -148,15 +146,12 @@ shouter.trigger = function(channel, route, ...args) {
  * Should only be used under test
  * @return {undefined}
  */
-shouter._deleteAllEvents = function() {
+let _deleteAllEvents = function() {
     eventList = {};
     oldMessage = {};
 };
 
-if (typeof window === 'undefined' && typeof module === 'object' && typeof module.exports === 'object') {
-    exports.__esModule = true;
-    exports.shouter = shouter;
-    exports.default = shouter;
-} else {
-    window.shouter = shouter;
-}
+let shouter = {on, off, trigger, _deleteAllEvents};
+
+export {shouter, on, off, trigger};
+export default shouter;
