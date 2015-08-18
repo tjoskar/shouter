@@ -12,6 +12,7 @@ interface shouter {
     on(channelName: string, routeName: string, callback: (args: any) => any, context?: any, getOldMessage?: boolean): void;
     off(channelName: string, routeName: string, callback: (args: any) => any): void;
     trigger<T>(channelName: string, routeName: string, ...args: Array<any>): triggerReturn<T>;
+    _deleteAllEvents(): void;
 }
 
 interface Window { shouter: shouter; }
