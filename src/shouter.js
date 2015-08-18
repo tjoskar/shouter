@@ -32,17 +32,9 @@ let oldMessage = {};
  * @param {Array}   args
  * @return {Promise}
 */
-let caller = function (event, args) {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            let result;
-            try {
-                result = event.context::event.callback(...args);
-                resolve(result);
-            } catch (e) {
-                reject(e);
-            }
-        });
+let caller = (event, args)  => {
+    return Promise.resolve().then(() => {
+        return event.context::event.callback(...args);
     });
 };
 
