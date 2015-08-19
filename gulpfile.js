@@ -10,7 +10,7 @@ var babelify = require('babelify');
 var buffer = require('vinyl-buffer');
 
 gulp.task('build', function () {
-    return gulp.src('src/*.js')
+    return gulp.src('src/**/*.js')
         .pipe(sourcemaps.init())
         .pipe(babel())
         .pipe(uglify())
