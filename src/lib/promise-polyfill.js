@@ -190,6 +190,6 @@ let applyPolyfill = function(root) {
 
 };
 
-if (!root.Promise) {
+if (!globalObject.Promise) {
     applyPolyfill(globalObject);
 }
