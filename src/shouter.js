@@ -11,7 +11,7 @@
 //
 
 // For some reason some people are still using old browsers and systems
-import 'promise-polyfill';
+import './lib/promise-polyfill';
 
 /**
  * List of registered events
