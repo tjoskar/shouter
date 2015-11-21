@@ -53,6 +53,9 @@ $ bower install shouter
 
 And then, include `dist/browser/shouter.js` in your html file, see: [browser.html](examples/browser.html) for example.
 
+###### Size
+≈1.8kb gzipped
+
 ### Listening to channels and routes
 ---
 When subscribing to an event you must specify a channel, route and a callback:
@@ -130,7 +133,7 @@ let e = () => 2.718;
 shouter.on('calc', 'pi', pi);
 shouter.on('calc', 'e', e);
 shouter
-    .trigger('channel', '*')
+    .trigger('calc', '*')
     .results
     .then(calc => {
         calc.forEach(result => console.log(result));
@@ -148,7 +151,7 @@ let e = () => 2.718;
 shouter.on('calc', 'pi', pi);
 shouter.on('calc', 'e', e);
 shouter
-    .trigger('channel', '*')
+    .trigger('calc', '*')
     .results
     .then(calc => {
         calc.forEach(result => console.log(result));
@@ -192,7 +195,7 @@ class Person {
         return this._name;
     }
 
-    // This will only work on static methods since wi don't have access to `this`
+    // This will only work on static methods since we don't have access to `this`
     // See: https://github.com/wycats/javascript-decorators/issues/13#issuecomment-120875498 for more information
     @triggerOnEvent('speak', 'greetings')
     sayHi(name) {
