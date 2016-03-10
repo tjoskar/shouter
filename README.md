@@ -43,7 +43,7 @@ shouter
     });
 ```
 
-See `example` folder for ES6 and ES7 example.
+See `example` folder for ES6 and ES8 example.
 
 #### Bower
 (or download [this file](dist/browser/shouter.js)):
@@ -232,7 +232,7 @@ $ tsd link
 ### Contribute
 See more examples in `test` or `exampels` folder.
 
-All code are written in ES6/ES7 (ES2016/ES2017).
+All code are written in ES6/ES.next (ES2016/ES2018).
 
 To install: `npm install`
 
