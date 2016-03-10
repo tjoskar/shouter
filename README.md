@@ -178,7 +178,7 @@ shouter.on('channel', 'route', callback, context, getAlreadySubmittedEvents); //
 
 ### Decorators
 ---
-If you are using ES2017 (aka ES7) (or typescript) you can decorate your classes:
+If you are using ES2018 (aka ES8) (or typescript) you can decorate your classes:
 You can run this example by `babel-node examples/decorators.js` (remember to run `npm install` first)
 ```javascript
 import {shouter, triggerOnEvent, shoutOnSet, shoutOnGet} from 'shouter';
