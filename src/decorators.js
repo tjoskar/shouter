@@ -1,6 +1,6 @@
 'use strict';
 
-import {shouter} from './shouter';
+import {shouter} from './index';
 
 let checkChannelAndRouteName = (channel, route) => {
     if (!channel || !route) {
