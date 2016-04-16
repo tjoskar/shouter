@@ -1,5 +1,3 @@
-'use strict';
-
 import {shouter} from './index';
 
 let checkChannelAndRouteName = (channel, route) => {

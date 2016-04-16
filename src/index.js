@@ -1,5 +1,3 @@
-'use strict';
-
 // Shouter
 // ---------------
 // Bind a callback function to an event.
