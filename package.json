@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --compilers js:babel-register test",
-    "build": "babel"
+    "build": "babel src -d ."
   },
   "bugs": {
     "url": "https://github.com/tjoskar/shouter/issues"
