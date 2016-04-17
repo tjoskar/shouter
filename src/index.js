@@ -27,7 +27,7 @@ let oldMessage = {};
  * @param {Array}   args
  * @return {Promise}
 */
-let caller = (event, args)  => {
+const caller = (event, args)  => {
     return Promise.resolve().then(() => {
         return event.context::event.callback(...args);
     });
@@ -43,8 +43,7 @@ let caller = (event, args)  => {
  * @param  {Boolian}  getOldMessage Determines if old triggers should be taken under account
  * @return {undefined}
  */
-let on = function(channel, route, callback, context, getOldMessage) {
-
+const on = (channel, route, callback, context, getOldMessage) => {
     if (!(channel in eventList)) {
         eventList[channel] = {};
     }
@@ -74,15 +73,15 @@ let on = function(channel, route, callback, context, getOldMessage) {
  * @param  {Function} callback   Callback function for selecting a specific event
  * @return {undefined}
  */
-let off = function(channel, route, callback) {
-    if (arguments.length === 2) {
+const off = (channel, route, callback) => {
+    if (callback === undefined || typeof route === 'function') {
         callback = route;
         route = '*';
     }
 
     if (channel in eventList && route in eventList[channel]) {
-        var evList = eventList[channel][route];
-        for (var i = evList.length - 1; i >= 0; i--) {
+        const evList = eventList[channel][route];
+        for (let i = evList.length - 1; i >= 0; i--) {
             if (evList[i].callback === callback) {
                 evList.splice(i, 1);
             }
@@ -97,11 +96,11 @@ let off = function(channel, route, callback) {
  * @param  {*args}  arguments   Will be passed throw to the callback function
  * @return {object}
  */
-let trigger = function(channel, route, ...args) {
-    let results = [];
+const trigger = (channel, route, ...args) => {
+    const results = [];
 
     if (channel in eventList) {
-        var events = eventList[channel];
+        const events = eventList[channel];
         Object.keys(events)
             .forEach(routName => {
                 if (route === routName || route === '*' || routName === '*') {
@@ -110,7 +109,7 @@ let trigger = function(channel, route, ...args) {
             });
     }
 
-    var promiseResult = Promise.all(results);
+    const promiseResult = Promise.all(results);
 
     return {
         save: function() {
@@ -133,12 +132,12 @@ let trigger = function(channel, route, ...args) {
  * Should only be used under test
  * @return {undefined}
  */
-let _deleteAllEvents = function() {
+const _deleteAllEvents = () => {
     eventList = {};
     oldMessage = {};
 };
 
-let shouter = {on, off, trigger, _deleteAllEvents};
+const shouter = {on, off, trigger, _deleteAllEvents};
 
-export {shouter, on, off, trigger};
+export { shouter, on, off, trigger };
 export default shouter;

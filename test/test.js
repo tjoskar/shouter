@@ -1,7 +1,5 @@
-'use strict';
-
-import {assert} from 'chai';
-import {shouter} from '../src/index';
+import { assert } from 'chai';
+import { shouter } from '../src/index';
 
 describe('shouter: ', () => {
 
@@ -9,23 +7,22 @@ describe('shouter: ', () => {
 
     describe('global event name: ', () => {
 
-        it('should receive message on trigger', (done) => {
+        it('should receive message on trigger', () => {
             var context = {called: 0};
 
             shouter.on('channelName', '*', function() {
                 this.called++;
             }, context);
 
-            shouter
+            return shouter
                 .trigger('channelName')
                 .results
                 .then(() => {
                     assert.strictEqual(context.called, 1);
-                    done();
                 });
         });
 
-        it('"on" method should accept arguments', (done) => {
+        it('"on" method should accept arguments', () => {
             var context = {called: 0, result: 1};
 
             shouter.on('channelName', '*', function(n) {
@@ -33,17 +30,16 @@ describe('shouter: ', () => {
                 this.result += n;
             }, context);
 
-            shouter
+            return shouter
                 .trigger('channelName', '*', 5)
                 .results
                 .then(() => {
                     assert.strictEqual(context.called, 1);
                     assert.strictEqual(context.result, 6);
-                    done();
                 });
         });
 
-        it('should accept multiply listeners', function(done) {
+        it('should accept multiply listeners', () => {
             var context = {'called': 0, 'result': 1};
             shouter.on('channelName', '*', function(n) {
                 this.called++;
@@ -54,17 +50,16 @@ describe('shouter: ', () => {
                 this.called++;
             }, context);
 
-            shouter
+            return shouter
                 .trigger('channelName', '*', 5)
                 .results
                 .then(() => {
                     assert.strictEqual(context.called, 2);
                     assert.strictEqual(context.result, 6);
-                    done();
                 });
         });
 
-        it('should be able to queue events', function() {
+        it('should be able to queue events', () => {
             var context = {'called': 0};
 
             shouter.trigger('channelName', '*').save();
@@ -77,7 +72,7 @@ describe('shouter: ', () => {
             assert.strictEqual(context.called, 2);
         });
 
-        it('should be able to queue events with arguments', function() {
+        it('should be able to queue events with arguments', () => {
             var context = {'called': 0, 'sum': 0};
             var context2 = {'called': 0, 'sum': 0};
 
@@ -100,7 +95,7 @@ describe('shouter: ', () => {
             assert.strictEqual(context2.sum, 0);
         });
 
-        it('should be able to remove event listeners', function(done) {
+        it('should be able to remove event listeners', () => {
             var context = {'called': 0, 'sum': 0};
             var fun = function(n) {
                 this.called++;
@@ -114,7 +109,7 @@ describe('shouter: ', () => {
             shouter.on('channelName', '*', fun, context);
             shouter.on('channelName', '*', fun2, context);
 
-            shouter
+            return shouter
                 .trigger('channelName', '*', 3)
                 .results
                 .then(() => {
@@ -124,14 +119,13 @@ describe('shouter: ', () => {
                 .then(() => {
                     assert.strictEqual(context.called, 3);
                     assert.strictEqual(context.sum, 9);
-                    done();
                 });
         });
     });
 
     describe('specified event name: ', () => {
 
-        it('should receive message on trigger', (done) => {
+        it('should receive message on trigger', () => {
             let context = {called: 0};
             let context2 = {called: 0};
 
@@ -142,17 +136,16 @@ describe('shouter: ', () => {
                 this.called++;
             }, context2);
 
-            shouter
+            return shouter
                 .trigger('channelName', 'eventName')
                 .results
                 .then(() => {
                     assert.strictEqual(context.called, 1);
-                    done();
                 });
 
         });
 
-        it('should trigger all listeners on channel when * as event name', function(done) {
+        it('should trigger all listeners on channel when * as event name', () => {
             var context = {'called': 0, 'result': 1};
             shouter.on('channelName', 'eventName', function(n) {
                 this.called++;
@@ -163,17 +156,16 @@ describe('shouter: ', () => {
                 this.called++;
             }, context);
 
-            shouter
+            return shouter
                 .trigger('channelName', '*', 5)
                 .results
                 .then(() => {
                     assert.strictEqual(context.called, 2);
                     assert.strictEqual(context.result, 6);
-                    done();
                 });
         });
 
-        it('should be able to queue events with arguments', function() {
+        it('should be able to queue events with arguments', () => {
             var context = {'called': 0, 'sum': 0};
             shouter.trigger('channelName', 'eventName', 3).save();
 
@@ -186,7 +178,7 @@ describe('shouter: ', () => {
             assert.strictEqual(context.sum, 3);
         });
 
-        it('should be able to remove event listeners', function(done) {
+        it('should be able to remove event listeners', () => {
             var context = {'called': 0, 'sum': 0};
             var fun = function(n) {
                 this.called++;
@@ -194,7 +186,7 @@ describe('shouter: ', () => {
             };
             shouter.on('channelName', 'eventName', fun, context);
 
-            shouter
+            return shouter
                 .trigger('channelName', 'eventName', 3)
                 .results
                 .then(() => {
@@ -205,7 +197,6 @@ describe('shouter: ', () => {
                 .then(() => {
                     assert.strictEqual(context.called, 1);
                     assert.strictEqual(context.sum, 3);
-                    done();
                 });
         });
 
