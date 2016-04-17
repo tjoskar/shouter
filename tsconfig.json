@@ -15,5 +15,8 @@
         "./typings/promise.d.ts",
         "./typings/shouter.d.ts",
         "./typings/test.ts"
-    ]
+    ],
+    "atom": {
+        "rewriteTsconfig": true
+    }
 }
