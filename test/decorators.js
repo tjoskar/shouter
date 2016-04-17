@@ -1,7 +1,6 @@
-'use strict';
-
-import {assert} from 'chai';
-import {shouter, triggerOnEvent, shoutOnSet, shoutOnGet} from '../src/index';
+import { assert } from 'chai';
+import { shouter } from '../src/index';
+import { triggerOnEvent, shoutOnSet, shoutOnGet } from '../src/decorators';
 
 describe('decorators: ', () => {
 
@@ -15,7 +14,7 @@ describe('decorators: ', () => {
             assert.doesNotThrow(triggerOnEvent.bind(undefined, 'channel', 'event'));
         });
 
-        it('should trigger an event', (done) => {
+        it('should trigger an event', () => {
             let context = {called: 0};
             let target = context;
             let name = '';
@@ -26,12 +25,12 @@ describe('decorators: ', () => {
             };
 
             triggerOnEvent('channel', 'event')(target, name, descriptor);
-            shouter
+
+            return shouter
                 .trigger('channel', 'event')
                 .results
                 .then(() => {
                     assert.strictEqual(context.called, 1);
-                    done();
                 });
         });
 

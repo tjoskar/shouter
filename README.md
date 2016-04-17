@@ -5,9 +5,9 @@
 Simple, yet powerful micro framework for event broadcasts.
 
 ```javascript
-import {shouter} from 'shouter';
+import { shouter } from 'shouter';
 
-let help = () => alert('HELP!');
+const help = () => alert('HELP!');
 shouter.on('avalanche', '*', help);
 shouter.trigger('avalanche', 'danger');
 shouter.off('avalanche', help);
@@ -43,18 +43,10 @@ shouter
     });
 ```
 
-See `example` folder for ES6 and ES8 example.
-
-#### Bower
-(or download [this file](dist/browser/shouter.js)):
-```
-$ bower install shouter
-```
-
-And then, include `dist/browser/shouter.js` in your html file, see: [browser.html](examples/browser.html) for example.
+See `example` folder for ES6 and ES.next example.
 
 ###### Size
-≈1.8kb gzipped
+≈816 byte (gzipped)
 
 ### Listening to channels and routes
 ---
@@ -92,10 +84,13 @@ shouter.on('channel', 'route', fun);
 shouter.trigger('channel', 'route', 1, 2, 3);
 ```
 
-Or something as this:
+Or something like this:
 ```javascript
 shouter.on('math', 'min', Math.min);
-shouter.trigger('math', 'min', 1, 2, 3);
+shouter
+    .trigger('math', 'min', 1, 2, 3)
+    .results
+    .then(result => console.log(result)); // 1
 ```
 
 ### Async
@@ -107,7 +102,7 @@ shouter.on('channel', 'route', callback);
 shouter.trigger('channel', 'route');
 console.log('last one');
 
-// This will output:
+// Output:
 // last one
 // callback
 ```
@@ -178,7 +173,7 @@ shouter.on('channel', 'route', callback, context, getAlreadySubmittedEvents); //
 
 ### Decorators
 ---
-If you are using ES2018 (aka ES8) (or typescript) you can decorate your classes:
+If you are using ES2017 (aka ES8) (or typescript) you can decorate your classes:
 You can run this example by `babel-node examples/decorators.js` (remember to run `npm install` first)
 ```javascript
 import {shouter, triggerOnEvent, shoutOnSet, shoutOnGet} from 'shouter';
@@ -221,13 +216,12 @@ shouter.trigger('speak', 'greetings', 'Dexter Morgan');
 ```
 
 ### Typescript
-There exist a type definition file in the `typings` folder.
-Just run `tsd link` to include it.
+Resolve the type definition by setting: ´moduleResolution´ to ´node´:
 ```
-$ npm install shouter
-$ tsd link
+...
+"moduleResolution": "node",
+...
 ```
-
 
 ### Contribute
 See more examples in `test` or `exampels` folder.

@@ -1,26 +1,24 @@
-'use strict';
+import { shouter } from './index';
 
-import {shouter} from './shouter';
-
-let checkChannelAndRouteName = (channel, route) => {
+const checkChannelAndRouteName = (channel, route) => {
     if (!channel || !route) {
         throw new Error('You must specify both channel and route');
     }
 };
 
-var triggerOnEvent = (channel, route, getOldMessage = false) => {
+const triggerOnEvent = (channel, route, getOldMessage = false) => {
     checkChannelAndRouteName(channel, route);
 
     return function(target, name, descriptor) {
-        var {value: fun} = descriptor;
+        const {value: fun} = descriptor;
         shouter.on(channel, route, fun, target, getOldMessage);
     };
 };
 
-var shoutOnSet = (channel, route) => {
+const shoutOnSet = (channel, route) => {
     checkChannelAndRouteName(channel, route);
     return (target, name, descriptor) => {
-        var {set: orgFun} = descriptor;
+        const {set: orgFun} = descriptor;
         descriptor.set = function(...args) {
             shouter.trigger(channel, route, ...args);
             return this::orgFun(...args);
@@ -28,17 +26,17 @@ var shoutOnSet = (channel, route) => {
     };
 };
 
-var shoutOnGet = (channel, route) => {
+const shoutOnGet = (channel, route) => {
     checkChannelAndRouteName(channel, route);
     return (target, name, descriptor) => {
-        var {get: orgFun} = descriptor;
+        const {get: orgFun} = descriptor;
         descriptor.get = function(...args) {
-            var value = this::orgFun(...args);
+            const value = this::orgFun(...args);
             shouter.trigger(channel, route, value);
             return value;
         };
     };
 };
 
-export {triggerOnEvent, shoutOnSet, shoutOnGet};
-export default {triggerOnEvent, shoutOnSet, shoutOnGet};
+export { triggerOnEvent, shoutOnSet, shoutOnGet };
+export default { triggerOnEvent, shoutOnSet, shoutOnGet };

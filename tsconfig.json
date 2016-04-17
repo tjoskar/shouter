@@ -7,14 +7,17 @@
         "preserveConstEnums": true
     },
     "filesGlob": [
-        "./typings/**/*.ts",
+        "./*.ts",
+        "./test/*.ts",
+        "./typings/*.ts",
         "!./node_modules/**/*.ts"
     ],
     "compileOnSave": false,
     "files": [
-        "./typings/promise.d.ts",
-        "./typings/shouter.d.ts",
-        "./typings/test.ts"
+        "./decorators.d.ts",
+        "./index.d.ts",
+        "./test/test.ts",
+        "./typings/promise.d.ts"
     ],
     "atom": {
         "rewriteTsconfig": true

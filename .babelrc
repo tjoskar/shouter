@@ -1,3 +1,6 @@
 {
-    "optional": ["es7.decorators", "es7.functionBind"]
+    "presets": ["es2015"],
+    "plugins": ["transform-function-bind", "transform-decorators"],
+    "sourceMaps": true,
+    "sourceRoot": "./src"
 }
