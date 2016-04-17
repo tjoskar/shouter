@@ -1,4 +1,10 @@
 module.exports = {
+    "parser": "babel-eslint",
+    "globals": {
+        "describe": true,
+        "it": true,
+        "beforeEach": true
+    },
     "env": {
         "browser": true,
         "es6": true,
