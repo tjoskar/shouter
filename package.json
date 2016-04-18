@@ -7,7 +7,8 @@
     "test": "mocha --compilers js:babel-register test",
     "build": "npm run build-shouter && npm run build-decorators",
     "build-shouter": "babel src/index.js | uglifyjs -o ./index.js",
-    "build-decorators": "babel src/decorators.js | uglifyjs -o ./decorators.js"
+    "build-decorators": "babel src/decorators.js | uglifyjs -o ./decorators.js",
+    "prepublish": "npm run build"
   },
   "bugs": {
     "url": "https://github.com/tjoskar/shouter/issues"
