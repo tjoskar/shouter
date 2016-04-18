@@ -1,5 +1,3 @@
-/// <reference path="./typings/promise.d.ts"/>
-
 declare function on(eventName: string, routeName: string, callback: (args: any) => any, context?: any, getOldMessage?: boolean): void;
 declare function off(eventName: string, routeName: string, callback?: (args: any) => any): void;
 declare function off(eventName: string, callback?: (args: any) => any): void;
