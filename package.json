@@ -33,6 +33,6 @@
     "babel-register": "^6.7.2",
     "chai": "^4.0.1",
     "mocha": "^4.0.0",
-    "uglify-js": "^3.0.0"
+    "uglify-js": "^3.3.6"
   }
 }
